@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item text-primary">Dashboard</li>
             <li class="breadcrumb-item active">Posts</li>
           </ol>
         </div>
@@ -28,7 +28,7 @@
                         <h3 class="card-title">Daftar Semua Post</h3>
                         <form action="{{ route('post.index') }}" method="GET" class="form-inline ml-auto">
                             <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Cari nama atau email" name="search" value="{{ request('search') }}">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Cari" name="search" value="{{ request('search') }}">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>
@@ -40,7 +40,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <button class="btn btn-success mb-2" data-toggle="modal" data-target="#createModal">Create post</button>
+                    <button class="btn btn-success mb-3" data-toggle="modal" data-target="#createModal">Create post</button>
                 <table id="example1" class="table table-bordered table-striped">
                     
                     
@@ -89,14 +89,12 @@
                                             </div>
                                             {{-- image --}}
                                             <div class="form-groub">
-                                                <img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd" width="200" src="" id="output"> {{-- output --}}
-                                            </div>
-                                            <div class="form-groub">
                                                 <label
                                                     for="image"
                                                 >{{ __('Image') }}</label>
-                                                <div class="col-md-6">
-                                                    <div class="input-group mb-3">
+                                                <img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="200" src="" id="output"> {{-- output --}}
+                                                <div class="">
+                                                    <div class="input-group">
                                                         <div>
                                                             <input
                                                                 name="image"
@@ -126,7 +124,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="content">Content:</label>
-                                                <input type="text" name="content" class="form-control" value="{{ $post->content }}">
+                                                <textarea name="content" class="form-control">{{ $post->content }}</textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="status">Is Pinned:</label>
@@ -185,7 +183,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="createModalLabel">Create Post</h5>
+                                <h5 class="modal-title" id="createModalLabel">Buat Post</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -218,7 +216,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="content">Content:</label>
-                                        <input type="text" name="content" class="form-control">
+                                        <textarea name="content" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="jenis_kelamin">Is Pinned:</label>

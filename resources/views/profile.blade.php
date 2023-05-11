@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item text-primary">Dashboard</li>
             <li class="breadcrumb-item active">Profile</li>
           </ol>
         </div>
@@ -26,7 +26,7 @@
         <div class="col-md-3">
 
 <!-- Profile Image -->
-<div class="card card-primary card-outline">
+<div class="card card-info card-outline">
     <div class="card-body box-profile">
       <div class="text-center">
         <img class="profile-user-img img-fluid img-circle"
@@ -38,23 +38,20 @@
 
       <p class="text-muted text-center">{{ Auth::user()->role }}</p>
 
-      <ul class="list-group list-group-unbordered mb-3">
+      <ul class="list-group list-group-flush mb-2">
         <li class="list-group-item">
-          <b>ID</b> <a class="float-right">{{ Auth::user()->id }}</a>
+          <b>ID</b> <a class="float-right text-decoration-none">{{ Auth::user()->id }}</a>
        </li>
         <li class="list-group-item">
-           <b>Email</b> <a class="float-right">{{ Auth::user()->email }}</a>
+           <b>Email</b> <a class="float-right text-decoration-none">{{ Auth::user()->email }}</a>
         </li>
         <li class="list-group-item">
-          <b>Umur</b> <a class="float-right">{{ Auth::user()->umur }}</a>
-        </li>
-        <li class="list-group-item">
-          <b>Alamat</b> <a class="float-right">{{ Auth::user()->alamat }}</a>
+          <b>Kelas</b> <a class="float-right text-decoration-none">{{ Auth::user()->kelas }}</a>
         </li>
       </ul>
 
-      {{-- <a href="{{ route('logout') }}" class="btn btn-danger btn-block"><b>Logout</b></a> --}}
-      <div class="m-1">
+      <a href="#" class="btn btn-info btn-block text-white mb-1"><b>Edit Profile</b></a>
+      <div class="">
         <a class="btn btn-danger btn-block" href="{{ route('logout') }}"
            onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">

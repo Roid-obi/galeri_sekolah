@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link text-decoration-none">
       <img src="{{ asset('images/sewmo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light text-decoration-none">SEWMO</span>
+      <span class="brand-text font-weight-light text-decoration-none">Galeri Muh1s</span>
     </a>
 
     <!-- Sidebar -->
@@ -11,8 +11,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          {{-- <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
-          <img  src="{{ asset('images/doktah.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          @if (Auth::user()->image)
+            <img src="{{ asset('storage/images/'. Auth::user()->image) }}" class="img-circle elevation-2" alt="User Image">
+          @else
+            <img  src="{{ asset('images/doktah.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          @endif
         </div>
         <div class="info">
           <a href="{{ route('profile') }}" class="d-block text-decoration-none">{{ Auth::user()->name }}</a>
@@ -37,7 +40,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active' : '' }}">
+            <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active bg-info' : '' }}">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
@@ -45,7 +48,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('profile') }}" class="nav-link {{ Route::is('profile') ? 'active' : '' }}">
+            <a href="{{ route('profile') }}" class="nav-link {{ Route::is('profile') ? 'active bg-info' : '' }}">
               <i class="nav-icon fas fa-user-circle"></i>
               <p>
                 Profile
@@ -53,35 +56,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('post.index') }}" class="nav-link {{ Route::is('posts.index') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-user-circle"></i>
+            <a href="{{ route('post.index') }}" class="nav-link {{ Route::is('posts.index') ? 'active bg-info' : '' }}">
+              <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Posts
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('mobil.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-car-side"></i>
-              <p>
-                Master Mobil
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-car"></i>
-              <p>
-                Master Armada Mobil
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('sopir.list') }}" class="nav-link">
-              <i class="nav-icon fas fa-id-card"></i>
-              <p>
-                Master Supir
               </p>
             </a>
           </li>
@@ -89,7 +67,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Transaksi
+                Dropdown
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right">6</span>
               </p>
@@ -98,29 +76,29 @@
               <li class="nav-item">
                 <a href="pages/layout/top-nav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pesanan Baru</p>
+                  <p>--</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dalam Peminjaman</p>
+                  <p>--</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/boxed.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Pengembalian</p>
+                  <p>--</p>
                 </a>
               </li>
             </ul>
           </li>
           {{-- <li class="nav-header">MENU ADMIN</li> --}}
           <li class="nav-item">
-            <a href="{{ route('users') }}" class="nav-link {{ Route::is('users') ? 'active' : '' }}">
+            <a href="{{ route('users') }}" class="nav-link {{ Route::is('users') ? 'active bg-info' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Customers
+                Pengguna
                 <span class="badge badge-info right">2</span>
               </p>
             </a>

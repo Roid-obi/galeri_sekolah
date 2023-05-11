@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Customers</h1>
+          <h1>Pengguna</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Customers</li>
+            <li class="breadcrumb-item text-primary">Dashboard</li>
+            <li class="breadcrumb-item active">Pengguna</li>
           </ol>
         </div>
       </div>
@@ -25,10 +25,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h3 class="card-title">Daftar Semua Customers</h3>
+                        <h3 class="card-title">Daftar Semua Pengguna</h3>
                         <form action="{{ route('users') }}" method="GET" class="form-inline ml-auto">
                             <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Cari nama atau email" name="search" value="{{ request('search') }}">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Cari" name="search" value="{{ request('search') }}">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-lg btn-default">
                                         <i class="fa fa-search"></i>

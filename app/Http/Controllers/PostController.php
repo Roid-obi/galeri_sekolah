@@ -6,6 +6,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 
 
 
@@ -74,6 +76,10 @@ class PostController extends Controller
             // menghapus sopir dari database
             public function destroy($id) {
                 $post = Post::findOrFail($id);
+                $path = public_path('storage/images/'.$post->gambar); 
+                if(File::exists($path)){  //hapus file gambar
+                    File::delete($path);
+                }
                 $post->delete();
                 return redirect()->route('post.index');
             }

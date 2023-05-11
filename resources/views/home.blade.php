@@ -10,10 +10,10 @@
             <h1>Home</h1>
             </div>
             <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item active">Home</li>
-            </ol>
+              <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item text-primary">Dashboard</li>
+                  <li class="breadcrumb-item active">Home</li>
+              </ol>
             </div>
         </div>
         </div><!-- /.container-fluid -->
@@ -27,12 +27,12 @@
     <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-car-side"></i></span>
+            <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-robot"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Mobil</span>
+              <span class="info-box-text">Bot</span>
               <span class="info-box-number">
-                <small>Total</small> : 10
+                <small>Total</small> : 0
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -42,10 +42,10 @@
         <!-- /.col -->
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-danger elevation-1"><i class="nav-icon fas fa-id-card"></i></span>
+            <span class="info-box-icon bg-danger elevation-1"><i class="nav-icon fas fa-newspaper"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Sopir</span>
+              <span class="info-box-text">Postingan</span>
               <span class="info-box-number">
                 <small>Total</small> : 5
               </span>
@@ -61,11 +61,13 @@
 
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users-cog"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Sales</span>
-              <span class="info-box-number">760</span>
+              <span class="info-box-text">admin</span>
+              <span class="info-box-number">
+                <small>Total</small> : 2
+              </span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -77,7 +79,7 @@
             <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Customers</span>
+              <span class="info-box-text">Pengguna</span>
               <span class="info-box-number">
                 <small>Total</small> : 11
               </span>
