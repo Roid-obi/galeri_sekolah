@@ -30,7 +30,7 @@ class PostController extends Controller
                 $post->created_by = auth()->user()->name;
                 $post->content = $request->input('content');
                 $post->slug = Str::slug($request->title);
-                $post->is_pinned = 0;
+                $post->is_pinned = $request->input('is_pinned');
                 
                 if ($request->hasFile('image')) {
                     $image = $request->file('image');
@@ -52,7 +52,7 @@ class PostController extends Controller
                 $post->created_by = auth()->user()->name;
                 $post->content = $request->input('content');
                 $post->slug = Str::slug($request->title);
-                $post->is_pinned = 0;
+                $post->is_pinned = $request->input('is_pinned');
 
                 if ($request->hasFile('image')) {
                     $image = $request->file('image');

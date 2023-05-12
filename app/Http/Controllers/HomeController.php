@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +23,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function index(){
+        $admin = User::where('role', 'admin')->get();
+        $user = User::where('role', '!=', 'admin')->get();
+        $posts = Post::all();
+        
+        return view('home', compact('admin', 'user', 'posts'));
     }
+
 }

@@ -127,10 +127,10 @@
                                                 <textarea name="content" class="form-control">{{ $post->content }}</textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label for="status">Is Pinned:</label>
-                                                <select name="status" class="form-control">
-                                                    <option value="tersedia" {{ $post->is_pinned == 1 ? 'selected' : '' }}>Di Pin</option>
-                                                    <option value="tidak tersedia" {{ $post->is_pinned == 0 ? 'selected' : '' }}>Tidak Di Pin</option>
+                                                <label for="is_pinned">Is Pinned:</label>
+                                                <select name="is_pinned" class="form-control">
+                                                    <option value="1" {{ $post->is_pinned == 1 ? 'selected' : '' }}>Di Pin</option>
+                                                    <option value="0" {{ $post->is_pinned == 0 ? 'selected' : '' }}>Tidak Di Pin</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -219,8 +219,8 @@
                                         <textarea name="content" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="jenis_kelamin">Is Pinned:</label>
-                                        <select name="jenis_kelamin" class="form-control">
+                                        <label for="is_pinned">Is Pinned:</label>
+                                        <select name="is_pinned" class="form-control">
                                             <option value="1">Di Pin</option>
                                             <option value="0">Tidak Di Pin</option>
                                         </select>

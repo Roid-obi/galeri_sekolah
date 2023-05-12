@@ -47,7 +47,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Postingan</span>
               <span class="info-box-number">
-                <small>Total</small> : 5
+                <small>Total</small> : {{ $posts->count() }}
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -64,9 +64,9 @@
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users-cog"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">admin</span>
+              <span class="info-box-text">Admin</span>
               <span class="info-box-number">
-                <small>Total</small> : 2
+                <small>Total</small> : {{ $admin->count() }}
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -81,7 +81,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Pengguna</span>
               <span class="info-box-number">
-                <small>Total</small> : 11
+                <small>Total</small> : {{ $user->count() }}
               </span>
             </div>
             <!-- /.info-box-content -->
