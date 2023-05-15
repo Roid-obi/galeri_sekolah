@@ -15,7 +15,7 @@ class welcome extends Controller
     {
         return view('viewcen.viewcen',[
             'pinnedPosts' => Post::latest()->where('is_pinned',true)->get(),
-            "title"=> "Posts",
+            "title"=> "Postingan",
             'posts' => Post::latest()->paginate(6),
         ]);
     }

@@ -26,7 +26,7 @@
                         </div>
 
                         {{-- umur --}}
-                        <div class="row mb-3">
+                        {{-- <div class="row mb-3">
                             <label for="umur" class="col-md-4 col-form-label text-md-end">{{ __('Umur') }}</label>
 
                             <div class="col-md-6">
@@ -38,16 +38,16 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
-                        {{-- alamat --}}
+                        {{-- Kelas --}}
                         <div class="row mb-3">
-                            <label for="alamat" class="col-md-4 col-form-label text-md-end">{{ __('Alamat') }}</label>
+                            <label for="kelas" class="col-md-4 col-form-label text-md-end">{{ __('Kelas') }}</label>
 
                             <div class="col-md-6">
-                                <input id="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="alamat" autofocus>
+                                <input id="kelas" type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas') }}" required autocomplete="kelas" autofocus>
 
-                                @error('alamat')
+                                @error('kelas')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

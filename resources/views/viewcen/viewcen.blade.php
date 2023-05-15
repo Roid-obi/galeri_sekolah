@@ -6,12 +6,14 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>Welcome</title>
+    <title>Muh1s | Welcome</title>
+
+    <link rel="icon" href="{{ asset('images/SMKlogo.webp') }}" type="image/x-icon">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
 
     
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     
 
     <link href=" {!! asset('../assets/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
@@ -82,9 +84,10 @@
     
     
 <header >
-  <nav id="navbarwel" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav id="navbarwel" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 60px">
     <div class="container container-fluid">
-      <a class="navbar-brand" href="#">Ro-dev</a>
+      <img src="{{ asset('images/SMKlogo.webp') }}" alt="Muh1h" width="40px" class="brand-image me-1" style="opacity: .8">
+      <a class="navbar-brand" href="#">SMK Mutuharjo</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -97,7 +100,7 @@
               <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" >Home</a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('dashboard/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" >Control</a>
+                <a href="{{ url('dashboard/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" >Dashboard</a>
             </li>
             
             @else
@@ -133,7 +136,7 @@
         @foreach ($posts->where('is_pinned', true) as $index => $post)
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{ $index }}" class="@if ($loop->first) active @endif" aria-label="Slide {{ $index + 1 }}"></button>
         @endforeach
-    </div> --}}
+      </div> --}}
     
       <div class="carousel-inner">
         {{-- hanya post yang memiliki is_panned=true yang diloop --}}
@@ -198,7 +201,7 @@
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
-    @endif
+@endif
 
 
     {{-- posts --}}
@@ -315,7 +318,7 @@
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-end"><a href="#">Back to top</a></p>
-    <p>&copy; 2023 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p>&copy; 2023 SMK Mutuharjo, Mr &middot; <a href="#">Roid</a></p>
   </footer>
 </main>
 
@@ -323,7 +326,8 @@
 
 
 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('../assets/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
       
   </body>

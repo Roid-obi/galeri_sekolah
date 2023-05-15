@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Posts</h1>
+          <h1>Postingan</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item text-primary">Dashboard</li>
-            <li class="breadcrumb-item active">Posts</li>
+            <li class="breadcrumb-item active">Postingan</li>
           </ol>
         </div>
       </div>
@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h3 class="card-title">Daftar Semua Post</h3>
+                        <h3 class="card-title">Daftar Semua Postingan</h3>
                         <form action="{{ route('post.index') }}" method="GET" class="form-inline ml-auto">
                             <div class="input-group input-group-sm">
                                 <input class="form-control form-control-navbar" type="search" placeholder="Cari" name="search" value="{{ request('search') }}">
@@ -59,7 +59,7 @@
                         @foreach ($posts as $post)
                         <tr>
                             <td>{{ $post->id }}</td>
-                            <td>{{ $post->image }}</td>
+                            <td><img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="80" src="" id="output"> </td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
                             <td>{{ $post->created_by }}</td>
@@ -126,6 +126,39 @@
                                                 <label for="content">Content:</label>
                                                 <textarea name="content" class="form-control">{{ $post->content }}</textarea>
                                             </div>
+
+                                            {{-- Category --}}
+                                            <div class="form-group">
+                                                <label for="categories">{{ __('Category') }}</label>
+                                                @foreach ($categories as $category)
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="categories[]" id="categories_{{ $category->id }}" value="{{ $category->id }}" {{ in_array($category->id, $post->categories->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="categories_{{ $category->id }}">{{ $category->name }}</label>
+                                                </div>
+                                                @endforeach
+                                                @error('categories')
+                                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            {{-- Tag --}}
+                                            <div class="form-group">
+                                                <label for="tags">{{ __('Tag') }}</label>
+                                                @foreach ($tags as $tag)
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="tags[]" id="tags_{{ $tag->id }}" value="{{ $tag->id }}" {{ in_array($tag->id, $post->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="tags_{{ $tag->id }}">{{ $tag->name }}</label>
+                                                </div>
+                                                @endforeach
+                                                @error('tags')
+                                                        <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
                                             <div class="form-group">
                                                 <label for="is_pinned">Is Pinned:</label>
                                                 <select name="is_pinned" class="form-control">
@@ -191,33 +224,66 @@
                             <div class="modal-body">
                                 <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    <!-- Form Group for Title -->
                                     <div class="form-group">
                                         <label for="title">Title:</label>
                                         <input type="text" name="title" class="form-control">
                                     </div>
+                            
+                                    <!-- Form Group for Image -->
                                     <div class="form-group">
                                         <label for="image">{{ __('Image') }}</label>
                                         <img class="outimgd d-block" width="200" src="" id="createOutput">
                                         <div>
-                                            <input
-                                                name="image"
-                                                class="form-control @error('image') is-invalid @enderror"
-                                                type="file"
-                                                accept="image/*"
-                                                id="createImageInput"
-                                            >
+                                            <input name="image" class="form-control @error('image') is-invalid @enderror" type="file" accept="image/*" id="createImageInput">
                                             <small class="form-text text-muted">Silahkan Upload Foto Anda</small>
                                             @error('image')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                             @enderror
                                         </div>
                                     </div>
+                            
+                                    <!-- Form Group for Content -->
                                     <div class="form-group">
                                         <label for="content">Content:</label>
                                         <textarea name="content" class="form-control"></textarea>
                                     </div>
+
+                                    <!-- Form Group for Categories -->
+                                    <div class="form-group">
+                                        <label for="categories">{{ __('Tag') }}</label>
+                                        @foreach ($categories as $category)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="categories[]" id="categories_{{ $category->id }}" value="{{ $category->id }}">
+                                            <label class="form-check-label" for="categories_{{ $category->id }}">{{ $category->name }}</label>
+                                        </div>
+                                        @endforeach
+                                        @error('categories')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                            
+                                    <!-- Form Group for Tags -->
+                                    <div class="form-group">
+                                        <label for="tags">{{ __('Tag') }}</label>
+                                        @foreach ($tags as $tag)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="tags[]" id="tags_{{ $tag->id }}" value="{{ $tag->id }}">
+                                            <label class="form-check-label" for="tags_{{ $tag->id }}">{{ $tag->name }}</label>
+                                        </div>
+                                        @endforeach
+                                        @error('tags')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                            
+                                    <!-- Form Group for Is Pinned -->
                                     <div class="form-group">
                                         <label for="is_pinned">Is Pinned:</label>
                                         <select name="is_pinned" class="form-control">
@@ -225,12 +291,15 @@
                                             <option value="0">Tidak Di Pin</option>
                                         </select>
                                     </div>
+                            
+                                    <!-- Modal Footer -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Create</button>
+                                        <button type="submit" class="btn btn-success">Create</button>
                                     </div>
                                 </form>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

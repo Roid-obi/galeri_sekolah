@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('kelas');
             $table->string('role')->default('user');
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('status')->default('active');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

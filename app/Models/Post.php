@@ -18,7 +18,8 @@ class Post extends Model
         'content',
         'slug',
         'is_pinned',
-        'views'
+        'views',
+        'status',
     ];
 
 
@@ -34,5 +35,28 @@ class Post extends Model
         'views'=> 0
 
     ];
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'post_tag');
+    }
+
+    public function categories(){
+        return $this->belongsToMany(Category::class, 'post_category');
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'created_by');
+    }
+
+    public function view()
+    {
+        return $this->hasMany(User::class, 'created_by');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(comment::class)->whereNull('parent_id');
+    }
 
 }

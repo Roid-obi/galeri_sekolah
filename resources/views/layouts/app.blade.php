@@ -15,6 +15,7 @@
 
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    <link rel="icon" href="{{ asset('images/SMKlogo.webp') }}" type="image/x-icon">
 
 
     {{-- adminLTE --}}

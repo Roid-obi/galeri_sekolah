@@ -27,10 +27,42 @@
     <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-robot"></i></span>
+            <span class="info-box-icon bg-indigo elevation-1"><i class="nav-icon fas fa-thumbtack"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Bot</span>
+              <span class="info-box-text">Di Pin</span>
+              <span class="info-box-number">
+                <small>Total</small> : {{ $posts->where('is_pinned', true)->count() }}
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-danger elevation-1"><i class="nav-icon fas fa-th-large"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Postingan</span>
+              <span class="info-box-number">
+                <small>Total</small> : {{ $posts->count() }}
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-hashtag"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Tags</span>
               <span class="info-box-number">
                 <small>Total</small> : 0
               </span>
@@ -41,13 +73,13 @@
         </div>
         <!-- /.col -->
         <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-danger elevation-1"><i class="nav-icon fas fa-newspaper"></i></span>
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-newspaper"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Postingan</span>
+              <span class="info-box-text">Categories</span>
               <span class="info-box-number">
-                <small>Total</small> : {{ $posts->count() }}
+                <small>Total</small> : 0
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -88,6 +120,22 @@
           </div>
           <!-- /.info-box -->
         </div>
+        <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-robot"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Bot</span>
+              <span class="info-box-number">
+                <small>Total</small> : 0
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
         <!-- /.col -->
       </div>
       <!-- /.row -->
