@@ -70,6 +70,7 @@ class PostController extends Controller
                    if ($previousImage !== null) {
                        Storage::delete('public/images/' . $previousImage);
                    }
+           
                    $post->image = $fileName;
                }
            

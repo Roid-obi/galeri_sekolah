@@ -233,6 +233,21 @@
 
                   <p class="card-text">{{ $post->title }}</p>
 
+                  @foreach($post->categories as $category)
+                      <div class="namacatego btn-outline-secondary btn-sm">
+                          <a href="{{ route('post.category', $category->id) }}">
+                              {{ $category->name }}
+                          </a>
+                      </div>
+                  @endforeach
+                  @foreach($post->tags as $tag)
+                      <div class="namatag btn-outline-secondary btn-sm" >
+                          <a href="{{ route('post.tag', $tag->id) }}">
+                              #{{ $tag->name }}
+                          </a>
+                      </div>
+                  @endforeach
+
 
                     <p>Views: {{ $post->views }}</p>
                             

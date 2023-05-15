@@ -33,6 +33,25 @@ class welcome extends Controller
     }
 
 
+        // category di klik
+        public function showCategory(Category $category) {
+            $title = "Categories : $category->name";
+            $tags = Tag::all();
+            $posts = $category->categories()->paginate(4);
+            $pinnedPosts = $category->categories()->where('is_pinned',true)->get()->all();
+            return view('viewcen.viewcen',compact(['posts','pinnedPosts','tags','title']));
+        }
+    
+    
+        // tag di klik
+        public function showTag(Tag $tag) {
+            $title = "Tags : $tag->name";
+            $tags = Tag::all();
+            $posts = $tag->tags()->paginate(4);
+            $pinnedPosts = $tag->tags()->where('is_pinned',true)->get()->all();
+            return view('viewcen.viewcen',compact(['posts','pinnedPosts','tags','title']));
+        }
+    
 
 
 
