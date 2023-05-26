@@ -13,9 +13,9 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           @if (Auth::user()->image)
-            <img src="{{ asset('storage/images/'. Auth::user()->image) }}" class="img-circle elevation-2" alt="User Image">
+            <img src="{{ asset('/storage/images/user/' . Auth::user()->image) }}" class="img-circle elevation-2" alt="User Image">
           @else
-            <img  src="{{ asset('images/doktah.jpg') }}" class="img-circle elevation-2" alt="User Image">
+            <img  src="{{ asset('images/Default.svg.png') }}" class="img-circle elevation-2" alt="User Image">
           @endif
         </div>
         <div class="info">
@@ -41,7 +41,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active bg-info' : '' }}">
+            <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active bg-dark' : '' }}">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
@@ -49,7 +49,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('profile') }}" class="nav-link {{ Route::is('profile') ? 'active bg-info' : '' }}">
+            <a href="{{ route('profile') }}" class="nav-link {{ Route::is('profile') ? 'active bg-dark' : '' }}">
               <i class="nav-icon fas fa-user-circle"></i>
               <p>
                 Profile
@@ -57,16 +57,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('users') }}" class="nav-link {{ Route::is('users') ? 'active bg-info' : '' }}">
+            <a href="{{ route('users') }}" class="nav-link {{ Route::is('users') ? 'active bg-dark' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Pengguna
-                <span class="badge badge-info right">2</span>
+                <span class="badge badge-danger right">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('post.index') }}" class="nav-link {{ Route::is('post.index') ? 'active bg-info' : '' }}">
+            <a href="{{ route('post.index') }}" class="nav-link {{ Route::is('post.index') ? 'active bg-dark' : '' }}">
               <i class="nav-icon fas fa-th-large"></i>
               <p>
                 Postingan
@@ -74,7 +74,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('category.index') }}" class="nav-link {{ Route::is('category.index') ? 'active bg-info' : '' }}">
+            <a href="{{ route('category.index') }}" class="nav-link {{ Route::is('category.index') ? 'active bg-dark' : '' }}">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Categories
@@ -82,20 +82,28 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('tag.index') }}" class="nav-link {{ Route::is('tag.index') ? 'active bg-info' : '' }}">
+            <a href="{{ route('tag.index') }}" class="nav-link {{ Route::is('tag.index') ? 'active bg-dark' : '' }}">
               <i class="nav-icon fas fa-hashtag"></i>
               <p>
                 Tags
               </p>
             </a>
           </li>
+          {{-- <li class="nav-item">
+            <a href="{{ route('post-saves.show') }}" class="nav-link {{ Route::is('post-saves.show') ? 'active bg-dark' : '' }}">
+              <i class="nav-icon fas fa-save"></i>
+              <p>
+                Save Post
+              </p>
+            </a>
+          </li> --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Dropdown
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
+                <span class="badge badge-info right">3</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -127,3 +135,4 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+  

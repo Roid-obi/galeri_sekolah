@@ -18,6 +18,11 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
+  <!-- Loading overlay start -->
+  {{-- <div class="loding overlay" id="loading-overlay">
+      <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+  </div> --}}
+  <!-- Loading overlay end -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -45,7 +50,8 @@
                     
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>No</th>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Kelas</th>
@@ -53,9 +59,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $index=1;
+                        @endphp
                         @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
+                            <td>{{ $index++}}</td>
+                            <td>
+                              <div class="text-center">
+                                  @if($user->image)
+                                      <img src="{{ asset('storage/images/user/' . $user->image) }}" class="profile-user-img img-fluid img-circle" alt="User profile picture" style="max-width: 50px; max-height: 50px;">
+                                  @else
+                                      <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/Default.svg.png') }}" alt="User profile picture default" style="max-width: 50px; max-height: 50px;">
+                                  @endif  
+                            </div>
+                            </td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->kelas }}</td>
@@ -66,9 +84,9 @@
                    
                 </table>
                  <!-- menampilkan pagination links -->
-                 <div class="d-flex justify-content-end mt-3">
+                  <div class="d-flex justify-content-end mt-3">
                     {{ $users->links('vendor.pagination.bootstrap-4') }}
-                </div>
+                  </div>
                 </div>
                 <!-- /.card-body -->
             </div>

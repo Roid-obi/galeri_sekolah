@@ -17,6 +17,8 @@
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
     <link rel="icon" href="{{ asset('images/SMKlogo.webp') }}" type="image/x-icon">
 
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     {{-- adminLTE --}}
     <!-- Google Font: Source Sans Pro -->
@@ -34,12 +36,32 @@
 
     {{-- css --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <style>
+        /* loading */
+        .overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Ubah nilai RGBA sesuai kebutuhan */
+        z-index: 9999;
+        }
+        .overlay i {
+        color: #fff; /* Ubah warna sesuai kebutuhan */
+        }
+
+    </style>
 
     {{-- bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 </head>
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"> {{-- sidebar-collapse untuk default tertutup --}}
 
     <div class="wrapper">
         @include('layouts.navbar')
@@ -78,6 +100,14 @@
     <script src="{{ asset('dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('dist/js/pages/dashboard2.js') }}"></script>
+
+    {{-- loading --}}
+    <script>
+        // Show loading overlay when page is loading
+        $(window).on('load', function () {
+            $('#loading-overlay').fadeOut('slow');
+        });
+    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>

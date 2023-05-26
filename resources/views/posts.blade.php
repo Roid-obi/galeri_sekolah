@@ -18,6 +18,11 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
+<!-- Loading overlay start -->
+    {{-- <div class="loding overlay" id="loading-overlay">
+        <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+    </div> --}}
+<!-- Loading overlay end -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -46,7 +51,7 @@
                     
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>No</th>
                             <th>image</th>
                             <th>title</th>
                             <th>content</th>
@@ -56,9 +61,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $index = 1;
+                        @endphp
                         @foreach ($posts as $post)
                         <tr>
-                            <td>{{ $post->id }}</td>
+                            <td>{{ $index++ }}</td>
                             <td><img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="80" src="" id="output"> </td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
@@ -132,7 +140,7 @@
                                                 <label for="categories">{{ __('Category') }}</label>
                                                 @foreach ($categories as $category)
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="categories[]" id="categories_{{ $category->id }}" value="{{ $category->id }}" {{ in_array($category->id, $post->categories->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                                    <input class="form-check-input" type="radio" name="categories[]" id="categories_{{ $category->id }}" value="{{ $category->id }}" {{ in_array($category->id, $post->categories->pluck('id')->toArray()) ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="categories_{{ $category->id }}">{{ $category->name }}</label>
                                                 </div>
                                                 @endforeach
@@ -169,7 +177,7 @@
                                         </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                <button type="submit" class="btn btn-info">Save Changes</button>
                                             </div>
                                         </form>
                                     </div>
@@ -222,14 +230,19 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data" novalidate>
                                     @csrf
                                     <!-- Form Group for Title -->
                                     <div class="form-group">
                                         <label for="title">Title:</label>
-                                        <input type="text" name="title" class="form-control">
+                                        <input type="text" name="title" class="form-control @error('title') is-invalid @enderror">
+                                        @error('title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
-                            
+
                                     <!-- Form Group for Image -->
                                     <div class="form-group">
                                         <label for="image">{{ __('Image') }}</label>
@@ -238,59 +251,70 @@
                                             <input name="image" class="form-control @error('image') is-invalid @enderror" type="file" accept="image/*" id="createImageInput">
                                             <small class="form-text text-muted">Silahkan Upload Foto Anda</small>
                                             @error('image')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
                                             @enderror
                                         </div>
                                     </div>
-                            
+
                                     <!-- Form Group for Content -->
                                     <div class="form-group">
                                         <label for="content">Content:</label>
-                                        <textarea name="content" class="form-control"></textarea>
+                                        <textarea name="content" class="form-control @error('content') is-invalid @enderror"></textarea>
+                                        @error('content')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <!-- Form Group for Categories -->
                                     <div class="form-group">
-                                        <label for="categories">{{ __('Tag') }}</label>
+                                        <label for="categories">{{ __('Category') }}</label>
                                         @foreach ($categories as $category)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="categories[]" id="categories_{{ $category->id }}" value="{{ $category->id }}">
+                                            <input class="form-check-input" type="radio" name="categories[]" id="categories_{{ $category->id }}" value="{{ $category->id }}">
                                             <label class="form-check-label" for="categories_{{ $category->id }}">{{ $category->name }}</label>
                                         </div>
                                         @endforeach
                                         @error('categories')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
-                            
+
                                     <!-- Form Group for Tags -->
                                     <div class="form-group">
                                         <label for="tags">{{ __('Tag') }}</label>
                                         @foreach ($tags as $tag)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="tags[]" id="tags_{{ $tag->id }}" value="{{ $tag->id }}">
+                                            <input class="form-check-input @error('tags') is-invalid @enderror" type="checkbox" name="tags[]" id="tags_{{ $tag->id }}" value="{{ $tag->id }}">
                                             <label class="form-check-label" for="tags_{{ $tag->id }}">{{ $tag->name }}</label>
                                         </div>
                                         @endforeach
                                         @error('tags')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
-                            
+
                                     <!-- Form Group for Is Pinned -->
                                     <div class="form-group">
                                         <label for="is_pinned">Is Pinned:</label>
-                                        <select name="is_pinned" class="form-control">
+                                        <select name="is_pinned" class="form-control @error('is_pinned') is-invalid @enderror">
                                             <option value="1">Di Pin</option>
                                             <option value="0">Tidak Di Pin</option>
                                         </select>
+                                        @error('is_pinned')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
+
                             
                                     <!-- Modal Footer -->
                                     <div class="modal-footer">

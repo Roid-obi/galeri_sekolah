@@ -18,6 +18,11 @@
       </div>
     </div><!-- /.container-fluid -->
   </section>
+  <!-- Loading overlay start -->
+    {{-- <div class="loding overlay" id="loading-overlay">
+        <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+    </div> --}}
+    <!-- Loading overlay end -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -46,7 +51,7 @@
                     
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>No</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Create by</th>
@@ -54,9 +59,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $index=1;
+                        @endphp
                         @foreach ($categories as $category)
                         <tr>
-                            <td>{{ $category->id }}</td>
+                            <td>{{ $index++ }}</td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
                             <td>{{ $category->created_by }}</td>
@@ -90,7 +98,7 @@
                                         </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                <button type="submit" class="btn btn-info">Save Changes</button>
                                             </div>
                                         </form>
                                     </div>

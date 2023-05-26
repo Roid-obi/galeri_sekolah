@@ -96,12 +96,20 @@
         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
     </li> --}}
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
         <i class="fas fa-expand-arrows-alt"></i>
         </a>
-    </li>
+    </li> --}}
+    {{-- <li class="nav-item">
+        @if(Auth::user()->image)
+                <img src="{{ asset('storage/images/user/' . Auth::user()->image) }}" class="profile-user-img img-fluid img-circle" alt="User profile picture" style="max-width: 40px; max-height: 40px;">
+            @else
+                <img class="profile-user-img img-fluid img-circle" src="{{ asset('images/Default.svg.png') }}" alt="User profile picture default" style="max-width: 50px; max-height: 50px;">
+            @endif 
+    </li> --}}
         <li class="nav-item dropdown me-3">
+            
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ Auth::user()->name }}
@@ -112,11 +120,6 @@
                 {{-- home aplikasi --}}
                 <a class="dropdown-item" href="/" >
                     {{ __('Home Aps') }}
-                </a>
-
-                {{-- update prof --}}
-                <a class="dropdown-item" href="/update/users/{{ Auth::user()->id }}">
-                    {{ __('Update Profile') }}
                 </a>
 
                 {{-- save post --}}

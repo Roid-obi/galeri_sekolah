@@ -1,5 +1,5 @@
 header nav ul li a{
-    color: white;
+    color: rgb(157, 157, 157);
     padding: 5px;
     text-decoration: none;
 }
@@ -9,7 +9,7 @@ header nav ul li a{
 }
 
 header nav ul li a:hover{
-    color: rgb(157, 157, 157);
+    color: white;
     
 }
 

@@ -19,134 +19,123 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Loading overlay start -->
-    {{-- <div class="loding overlay" id="loading-overlay">
+    <div class="loding overlay" id="loading-overlay">
         <i class="fas fa-2x fa-sync-alt fa-spin"></i>
-    </div> --}}
+    </div>
     <!-- Loading overlay end -->
-    <!-- Info boxes -->
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-indigo elevation-1"><i class="nav-icon fas fa-thumbtack"></i></span>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Di Pin</span>
-              <span class="info-box-number">
-                <small>Total</small> : {{ $posts->where('is_pinned', true)->count() }}
-              </span>
+
+{{-- ionic --}}
+      {{-- baris 1 --}}
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-indigo">
+            <div class="inner">
+              <h3>{{ $posts->where('is_pinned', true)->count() }}</h3>
+
+              <p>Post di Pin</p>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-danger elevation-1"><i class="nav-icon fas fa-th-large"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Postingan</span>
-              <span class="info-box-number">
-                <small>Total</small> : {{ $posts->count() }}
-              </span>
+            <div class="icon">
+              <i class="nav-icon fas fa-thumbtack"></i>
             </div>
-            <!-- /.info-box-content -->
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
-        
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-hashtag"></i></span>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-primary">
+            <div class="inner">
+              <h3>{{ $posts->count() }}</h3>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Tags</span>
-              <span class="info-box-number">
-                <small>Total</small> : 0
-              </span>
+              <p>Postingan</p>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-newspaper"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Categories</span>
-              <span class="info-box-number">
-                <small>Total</small> : 0
-              </span>
+            <div class="icon">
+              <i class="nav-icon fas fa-th-large"></i>
             </div>
-            <!-- /.info-box-content -->
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>{{ $user->count() }}</h3>
 
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-users-cog"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Admin</span>
-              <span class="info-box-number">
-                <small>Total</small> : {{ $admin->count() }}
-              </span>
+              <p>Pengguna</p>
             </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box mb-3">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-            <div class="info-box-content">
-              <span class="info-box-text">Pengguna</span>
-              <span class="info-box-number">
-                <small>Total</small> : {{ $user->count() }}
-              </span>
+            <div class="icon">
+              <i class="fas fa-users"></i>
             </div>
-            <!-- /.info-box-content -->
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
-        <div class="col-12 col-sm-6 col-md-3">
-          <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-robot"></i></span>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{ $admin->count() }}</h3>
 
-            <div class="info-box-content">
-              <span class="info-box-text">Bot</span>
-              <span class="info-box-number">
-                <small>Total</small> : 0
-              </span>
+              <p>Admin</p>
             </div>
-            <!-- /.info-box-content -->
+            <div class="icon">
+              <i class="fas fa-users-cog"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
           </div>
-          <!-- /.info-box -->
         </div>
-        <!-- /.col -->
-        <!-- /.col -->
+        <!-- ./col -->
       </div>
-      <!-- /.row -->
+      {{-- baris 2 --}}
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-maroon">
+            <div class="inner">
+              <h3>{{ $categories->count() }}</h3>
 
-<!-- AdminLTE JS -->
-{{-- <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script>
-    // Show loading overlay when page is loading
-    $(window).on('load', function () {
-        $('#loading-overlay').fadeOut('slow');
-    });
-</script> --}}
+              <p>Category</p>
+            </div>
+            <div class="icon">
+              <i class="nav-icon fas fa-newspaper"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-pink">
+            <div class="inner">
+              <h3>{{ $tags->count() }}</h3>
+
+              <p>Tags</p>
+            </div>
+            <div class="icon">
+              <i class="nav-icon fas fa-hashtag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>0</h3>
+
+              <p>Bot</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+
 @endsection

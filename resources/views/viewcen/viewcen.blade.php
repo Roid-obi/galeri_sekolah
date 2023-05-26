@@ -87,7 +87,7 @@
   <nav id="navbarwel" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 60px">
     <div class="container container-fluid">
       <img src="{{ asset('images/SMKlogo.webp') }}" alt="Muh1h" width="40px" class="brand-image me-1" style="opacity: .8">
-      <a class="navbar-brand" href="#">SMK Mutuharjo</a>
+      <a class="navbar-brand" href="{{ url('/') }}">SMK Mutuharjo</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -97,7 +97,10 @@
         <ul class="navbar-nav ms-auto mb-2 mb-md-0">
             @auth
             <li class="nav-item">
-              <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" >Home</a>
+              <a href="{{ url('/') }}" class="text-sm text-white" >Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('posts') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" >Posts</a>
             </li>
             <li class="nav-item">
                 <a href="{{ url('dashboard/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" >Dashboard</a>
@@ -175,6 +178,7 @@
   <div class="container marketing">
 
     <!-- Three columns of text below the carousel -->
+    <!-- Baris Pertama -->
     <div class="row">
       <div class="col-lg-4">
         {{-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="waifu/zeta_kya.jpg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> --}}
@@ -201,6 +205,10 @@
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
+
+<!-- Baris Kedua -->
+
+
 @endif
 
 
@@ -211,7 +219,7 @@
 
   <section class="py-5 text-center container">
     
-        <h1 class="fw-light">{{ $title }}</h1>
+        <h1 class="fw-light">{{ $title }}{{ $tanda }}</h1>
       
   </section>
 
@@ -220,6 +228,9 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
+        @if ($posts->where('is_pinned', false)->isEmpty())
+            <p class="ms-5">Belum ada postingan...</p>
+        @else
       @foreach ($posts->where('is_pinned', false) as $post)
           <div class="kartu-posting">
             <div class="col">
@@ -231,31 +242,35 @@
                 <div class="card-body">
 
 
-                  <p class="card-text">{{ $post->title }}</p>
+                  <h4 class="card-text">{{ $post->title }}</h4>
 
+                  <div class="d-flex justify-content-end">
                   @foreach($post->categories as $category)
                       <div class="namacatego btn-outline-secondary btn-sm">
-                          <a href="{{ route('post.category', $category->id) }}">
+                          <a class="text-decoration-none" href="{{ route('post.category', $category->id) }}">
                               {{ $category->name }}
                           </a>
                       </div>
                   @endforeach
+                  </div>
+                  <div class="d-flex justify-content-end">
                   @foreach($post->tags as $tag)
                       <div class="namatag btn-outline-secondary btn-sm" >
-                          <a href="{{ route('post.tag', $tag->id) }}">
+                          <a class="text-decoration-none text-info" href="{{ route('post.tag', $tag->id) }}">
                               #{{ $tag->name }}
                           </a>
                       </div>
                   @endforeach
+                  </div>
 
 
                     <p>Views: {{ $post->views }}</p>
                             
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <a href="/posts/{{ $post->slug }}">
+                      {{-- <a href="/posts/{{ $post->slug }}">
                       <button   type="button" class="btn btn-sm btn-outline-secondary mt-3">View</button>
-                    </a>
+                    </a> --}}
                     
 
                       {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> --}}
@@ -267,6 +282,7 @@
             </div>
           </div>
       @endforeach
+      @endif
 
         
 
@@ -279,7 +295,6 @@
 
 
 @if($title != 'Categories' && $title != 'Tags')
-
     <!-- START THE FEATURETTES -->
 
     <hr class="featurette-divider">

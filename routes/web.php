@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SopirController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PostSaveController;
+use App\Http\Controllers\SavePostController;
 use App\Http\Controllers\welcome;
 use App\Http\Middleware\roleCek;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(welcome::class)->group(function () {
     Route::get('/','index')->name('welcome.index');
+    Route::get('/posts','posts')->name('welcome.posts');
     Route::get('/posts/{slug}','show')->name('post.detail');
 
     // Route::post('/', 'StoreComment')->name("comment"); 
@@ -48,10 +51,14 @@ Auth::routes();
 
 Route::get('/dashboard/home', [HomeController::class, 'index'])->name('home');
 
-
 Route::get('/dashboard/users', [UsersController::class, 'index'])->name('users');
 
+// Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('profile');
+
 Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('profile');
+// Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
 
 // post
 Route::prefix('post')->middleware('auth:sanctum')->group(function () {
@@ -76,3 +83,10 @@ Route::prefix('categories')->middleware('auth:sanctum')->group(function () {
     Route::put('/{category}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
+
+// save post
+Route::controller(SavePostController::class)->group(function () {
+    Route::get('/post-saves/{post}', 'show')->name('post-saves.show');
+    Route::post('/post-saves/{post}', 'store')->name('post-saves.store');
+    Route::delete('/post-saves/{post}', 'destroy')->name('post-saves.destroy');
+})->middleware('auth');
