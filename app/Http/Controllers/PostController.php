@@ -68,7 +68,12 @@ class PostController extends Controller
                 $validatedData = $request->validate([
                     'title' => 'required',
                     'content' => 'required',
-                    'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                    'image' => 'image|mimes:jpeg,png,jpg,gif',
+                ], [
+                    'title.required' => 'Title harus diisi.',
+                    'content.required' => 'Content harus diisi.',
+                    'image.image' => 'File harus berupa gambar.',
+                    'image.mimes' => 'Format file gambar yang diizinkan adalah: jpeg, png, jpg, gif.',
                 ]);
         
                 $post = Post::findOrFail($id);

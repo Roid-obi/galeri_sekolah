@@ -64,7 +64,7 @@
                         @endphp
                         @foreach ($users as $user)
                         <tr>
-                            <td>{{ $index++}}</td>
+                            <td>{{ $user->id }}</td>
                             <td>
                               <div class="text-center">
                                   @if($user->image)

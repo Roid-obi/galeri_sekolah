@@ -66,7 +66,7 @@
                         @endphp
                         @foreach ($posts as $post)
                         <tr>
-                            <td>{{ $index++ }}</td>
+                            <td>{{ $post->id }}</td>
                             <td><img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="80" src="" id="output"> </td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
@@ -100,11 +100,13 @@
                                                 <label
                                                     for="image"
                                                 >{{ __('Image') }}</label>
-                                                <img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="200" src="" id="output"> {{-- output --}}
+                                                {{-- <img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="200" src="" id="output"> output --}}
+                                                <img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="200" src="" id="output{{ $post->id }}">
+
                                                 <div class="">
                                                     <div class="input-group">
                                                         <div>
-                                                            <input
+                                                            {{-- <input
                                                                 name="image"
                                                                 class="form-control @error('image') is-invalid @enderror"
                                                                 value="{{ $post->image }}"
@@ -113,7 +115,17 @@
                                                                 id="formFile"
                                                                 onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"
                                                                 onchange="loadFile(event)"
+                                                            > --}}
+                                                            <input 
+                                                            name="image" 
+                                                            class="form-control @error('image') is-invalid @enderror" 
+                                                            value="{{ $post->image }}" 
+                                                            type="file" 
+                                                            accept="image/*" 
+                                                            id="formFile{{ $post->id }}" 
+                                                            onchange="document.getElementById('output{{ $post->id }}').src = window.URL.createObjectURL(this.files[0]); loadFile(event);"
                                                             >
+
                                                             <small
                                                                 for="formFile"
                                                                 class="form-label"

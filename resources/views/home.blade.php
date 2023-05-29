@@ -19,9 +19,9 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Loading overlay start -->
-    <div class="loding overlay" id="loading-overlay">
+    {{-- <div class="loding overlay" id="loading-overlay">
         <i class="fas fa-2x fa-sync-alt fa-spin"></i>
-    </div>
+    </div> --}}
     <!-- Loading overlay end -->
 
 
