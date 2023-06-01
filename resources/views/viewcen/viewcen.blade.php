@@ -84,7 +84,7 @@
     
     
 <header >
-  <nav id="navbarwel" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="height: 60px">
+  <nav id="navbarwel" class="navbar navbar-expand-md navbar-dark fixed-top bg-black" style="">
     <div class="container container-fluid">
       <img src="{{ asset('images/SMKlogo.webp') }}" alt="Muh1h" width="40px" class="brand-image me-1" style="opacity: .8">
       <a class="navbar-brand" href="{{ url('/') }}">SMK Mutuharjo</a>
@@ -97,7 +97,7 @@
         <ul class="navbar-nav ms-auto mb-2 mb-md-0">
             @auth
             <li class="nav-item">
-              <a href="{{ url('/') }}" class="text-sm text-white" >Home</a>
+              <a href="{{ url('/') }}" class="active text-sm" >Home</a>
             </li>
             <li class="nav-item">
                 <a href="{{ url('posts') }}" class="text-sm text-gray-700 dark:text-gray-500 underline" >Posts</a>
@@ -133,7 +133,7 @@
 @if($title != 'Categories' && $title != 'Tags')
   {{-- slide show --}}
  
-  <div class="ban-slideshow">
+  <div class="ban-slideshow" style="margin-top: -47px;" style="height: 70%">
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
       {{-- <div class="carousel-indicators">
         @foreach ($posts->where('is_pinned', true) as $index => $post)
@@ -141,17 +141,17 @@
         @endforeach
       </div> --}}
     
-      <div class="carousel-inner">
+      <div class="carousel-inner" >
         {{-- hanya post yang memiliki is_panned=true yang diloop --}}
         @foreach ($posts->where('is_pinned', true) as $index => $post) 
         <div class="carousel-item @if ($loop->first) active @endif">
           
           <img  width="100%" src="{{ asset('/storage/images/'.$post->image) }}" alt="">
           <div class="container">
-            <div class="carousel-caption text-start">
+            <div class="carousel-caption text-center">
               <h1>{{ $post->title }}</h1>
               <p>{!! $post->content !!}</p>
-              <p><a class="btn btn-lg btn-dark" href="/posts/{{ $post->slug }}">Read More</a></p>
+              <p><a class="butn-crl btn-lg btn-dark" href="/posts/{{ $post->slug }}">Read More...</a></p>
             </div>
           </div>
         </div>
@@ -170,43 +170,7 @@
 
 
 
-
-  
-  {{-- waifu --}}
-  <!-- Wrap the rest of the page in another container to center all the content. -->
-
   <div class="container marketing">
-
-    <!-- Three columns of text below the carousel -->
-    <!-- Baris Pertama -->
-    <div class="row">
-      <div class="col-lg-4">
-        {{-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="waifu/zeta_kya.jpg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> --}}
-
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="waifu/yukino2.jpg" alt="" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-        <h2 class="fw-normal">Yukino</h2>
-        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        {{-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> --}}
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{ asset('waifu/seseren-arknights.gif') }}" alt="" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-
-        <h2 class="fw-normal">Skadi</h2>
-        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        {{-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> --}}
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="waifu/seseren-texas.gif" alt="" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title>
-
-        <h2 class="fw-normal">Texas</h2>
-        <p>And lastly this, the third column of representative placeholder content.</p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
-
-<!-- Baris Kedua -->
 
 
 @endif
@@ -219,7 +183,7 @@
 
   <section class="py-5 text-center container">
     
-        <h1 class="fw-light">{{ $title }}{{ $tanda }}</h1>
+        <h1 class="fw-light">{{ $title }}</h1>
       
   </section>
 

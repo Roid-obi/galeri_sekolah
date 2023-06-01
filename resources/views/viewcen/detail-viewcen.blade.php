@@ -160,7 +160,14 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <div class="btn-group">
-                        <button class="btn btn-dark" onclick="goBack()">Back</button>
+                      
+                        <button class="btn btn-sm btn-outline-danger" href="{{ url('posts') }}" 
+                        onclick="goBack()"
+                        >
+                        {{-- <a href="{{ url('posts') }}" class="text-decoration-none text-white" --}}
+                        Back
+                        {{-- </a> --}}
+                        </button>
                       
   
                         {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> --}}
@@ -182,6 +189,303 @@
               <h5 class="card-title">Comments</h5>
               <hr>
               <!-- Add your comment section here -->
+ {{-- comment --}}
+ <section style="margin-top: 30xp" class="content-item" id="comment">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-8">
+              @auth
+              <form id="comment-form" action="{{route('comment',$post->slug)}}" method="POST" style="margin-bottom: 50px">
+                  @csrf
+                  {{-- <h3 style=" font-family: Neucha, sans-serif;" class="pull-left" >Comment</h3> --}}
+                  <fieldset>
+                      <div class="row">
+                          {{-- <div class="col-sm-3 col-lg-2 hidden-xs">
+                              @if (Auth::user()->image)
+                                  <img class="imagecoms img-responsive" src="{{ asset('storage/images/user/' . Auth::user()->image) }}"
+                                      width="100" alt="">
+                              @else
+                                  <img class="imagecoms img-responsive"
+                                      src="{{ asset('gambar/npc.jpg') }}" width="100"
+                                      alt="">
+                              @endif
+                          </div> --}}
+                          <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                              <input type="hidden" name="post_id" value="{{ $post->id }}">  
+                              <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                              <input type="hidden" name="parent_id" value="{{ $parent_id ?? null }}"> 
+
+                              <textarea class="inputcom form-control" name="content" id="message" placeholder="Your message" required=""></textarea>
+                              <button style="" type="submit" class="button-55 btn btn-normal pull-right" >Submit</button>
+                          </div>
+                      </div>
+                  </fieldset>
+              </form>
+              @endauth
+              @guest
+                  <p>Silakan <a href="{{ route('login') }}">login</a> atau <a href="{{ route('register') }}">register</a> untuk
+                      mengomentari.</p>
+              @endguest
+              <h3 style=" font-family: Neucha, sans-serif; ">{{$comments->count()}} Comments</h3>
+
+
+
+              @foreach ($comments as $comment)
+  {{-- {{ $comment }} --}}
+      <div class="container__">
+          @if ($comment->parent_id == null)
+          <div class="comment__container opened" id="comment-{{ $comment->id }}">
+              <div class="comment__card">
+                  <div class="comment__title">
+                      <span class="fs-5 fw-bold">
+                          <img src="{{ ($comment->user->image == null) ? asset('gambar/npc.jpg') : asset('storage/images/user/'.$comment->user->image) }}" class="rounded-circle" width="5%"> 
+                          &nbsp; {{ $comment->user->name }}
+                      </span>
+                      <span class="fs-6"> - {{ $comment->created_at->diffForHumans() }}
+                      </span>
+                  </div>
+                  <p>{{ $comment->content }}</p>
+                  <div class="comment__card-footer">
+                      @auth
+                      @if ($comment->user->nama == auth()->user()->nama)
+                      <div data-bs-toggle="collapse" data-bs-target="#editComment{{ $comment->id }}" aria-expanded="false" aria-controls="editComment{{ $comment->id }}">
+                          Edit
+                      </div>
+                      <div class="delete-button" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $comment->id }}').submit();">
+                          Delete
+                      </div>
+                      <form id="delete-form-{{ $comment->id }}" action="{{ route('comments.destroy', ['id' => $comment->id]) }}" method="POST" class="d-none">
+                          @csrf
+                          @method('DELETE')
+                      </form>
+                      @endif
+                      <div data-bs-toggle="collapse" data-bs-target="#replyComment{{ $comment->id }}" aria-expanded="false" aria-controls="replyComment{{ $comment->id }}">
+                          Reply
+                      </div>
+                      @endauth
+                      <div class="show-replies">Show Reply</div>
+                  </div>
+                  <div class="collapse" id="editComment{{ $comment->id }}">
+                      <form action="{{ route('comments.update', ['comment' => $comment->id]) }}" method="POST">
+                      @csrf
+                      @method('PUT')
+                      <div class="mb-3">
+                          <textarea 
+                          class="form-control" 
+                          id="content" 
+                          name="content" 
+                          class="form-control" 
+                          maxlength="255"
+
+                          oninput="document.getElementById('counter_update{{ $comment->id }}').textContent = (255 - this.value.length) + ' karakter tersisa'"
+                          >{{ $comment->content }}</textarea>
+                          <div id="counter_update{{ $comment->id }}"></div>
+                      </div>
+                      @error('content')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                      @auth
+                      <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                      @endauth
+                      <input type="hidden" name="post_id" value="{{ $post->id }}">
+                      <button type="submit" class="btn btn-primary">Update</button>
+                      </form>
+                  </div>
+{{-- input balas comen 1 --}}
+                  <div class="collapse" id="replyComment{{ $comment->id }}">
+                      <form action="{{ route('comment', ['post' => $post->slug]) }}" method="POST">
+                      @csrf
+                      @method('POST') {{-- menyesuaikan method router --}}
+                      <div class="mb-3">
+          
+                          <textarea autofocus class="form-control" 
+                          id="content" 
+                          name="content"
+                          maxlength="255"
+                          oninput="document.getElementById('counter_reply_comment{{ $comment->id }}').textContent = (255 - this.value.length) + ' karakter tersisa'">{{ __('@:username ', ['username' => $comment->user->nama]) }}</textarea>
+                          <div id="counter_reply_comment{{ $comment->id }}"></div>
+                      </div>
+                      @error('content')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                      @auth
+                      <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                      @endauth
+                      <input type="hidden" name="post_id" value="{{ $post->id }}">
+                      <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                      <button type="submit" class="btn btn-primary">Send</button>
+                      </form>
+                  </div>
+              </div>
+
+              <div class="comment__container" dataset="comment-{{ $comment->id }}" id="reply-{{ $comment->id }}">
+                  @if(count($comment->replies))
+                  @foreach ($comment->replies as $reply)
+                  <div class="comment__card">
+                      <div class="comment__title">
+                          <span class="fs-5 fw-bold">
+                              <img src="{{ ($reply->user->gambar == null) ? asset('images/null.jfif') : asset('storage/images/'.$reply->user->gambar) }}" class="rounded-circle" width="5%"> 
+                              &nbsp; {{ $reply->user->nama }}
+                          </span> 
+                          <span class="fs-6"> - {{ $reply->created_at->diffForHumans() }}</span>
+                      </div>
+                      <p>{{ $reply->content }}</p>
+                      <div class="comment__card-footer">
+                          @auth
+                          @if ($reply->user->nama == auth()->user()->nama)
+                          <div data-bs-toggle="collapse" data-bs-target="#editReplyComment{{ $reply->id }}" aria-expanded="false" aria-controls="editReplyComment{{ $reply->id }}">
+                              Edit
+                          </div>
+                          <div class="delete-button" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $reply->id }}').submit();">
+                              Delete
+                          </div>
+                          <form id="delete-form-{{ $reply->id }}" action="{{ route('comments.destroy', ['id' => $reply->id]) }}" method="POST" class="d-none">
+                              @csrf
+                              @method('DELETE')
+                          </form>
+                          @endif
+                          <div data-bs-toggle="collapse" data-bs-target="#replyReplyComment{{ $reply->id }}" aria-expanded="false" aria-controls="replyReplyComment{{ $reply->id }}">
+                              Reply
+                          </div>
+                          @endauth
+                          <div class="show-replies">Show Reply</div>
+                      </div>
+
+                      <div class="collapse" id="editReplyComment{{ $reply->id }}">
+                          <form action="{{ route('comments.update', ['comment' => $reply->id]) }}" method="POST">
+                          @csrf
+                          @method('PUT')
+                          <div class="mb-3">
+                              <textarea 
+                              class="form-control" 
+                              id="content" 
+                              name="content" 
+                              class="form-control" 
+                              maxlength="255"
+                              oninput="document.getElementById('reply_update{{ $comment->id }}').textContent = (255 - this.value.length) + ' karakter tersisa'"
+                              >{{ $comment->content }}</textarea>
+                              <div id="reply_update{{ $comment->id }}"></div>
+                          </div>
+                          @error('content')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                          @auth
+                          <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                          @endauth
+                          <input type="hidden" name="post_id" value="{{ $post->id }}">
+                          <button type="submit" class="btn btn-primary">Update</button>
+                          </form>
+                      </div>
+{{-- input balas komen 2 --}}
+                      <div class="collapse" id="replyReplyComment{{ $reply->id }}">
+                          <form action="{{ route('comment', ['post' => $post->slug]) }}" method="POST">
+                          @csrf
+                          @method('POST')
+                          <div class="mb-3">
+                              <textarea autofocus class="form-control" 
+                              id="content" 
+                              name="content"
+                              maxlength="255"
+                              oninput="document.getElementById('reply_reply_comment{{ $comment->id }}').textContent = (255 - this.value.length) + ' karakter tersisa'">{{ __('@:username ', ['username' => $comment->user->nama]) }}</textarea>
+                              <div id="reply_reply_comment{{ $comment->id }}"></div>
+                          </div>
+                          @error('content')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                          @auth
+                          <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                          @endauth
+                          <input type="hidden" name="post_id" value="{{ $post->id }}">
+                          <input type="hidden" name="parent_id" value="{{ $reply->id }}">
+                          <button type="submit" class="btn btn-primary">Send</button>
+                          </form>
+                      </div>
+                  </div>
+
+                  <div class="comment__container"  dataset="reply-{{ $comment->id }}" id="reply-reply-{{ $reply->id }}">
+                  @if ($reply->replies)
+                      @foreach ($reply->replies as $reply2)
+                          <div class="comment__card">
+                              <div class="comment__title">
+                                  <span class="fs-5 fw-bold">
+                                      <img src="{{ ($reply2->user->pp == null) ? asset('images/null.jfif') : asset('storage/images/'.$reply2->user->pp) }}" class="rounded-circle" width="5%"> 
+                                      &nbsp; {{ $reply2->user->nama }}
+                                  </span> 
+                                  <span class="fs-6">
+                                      - {{ $reply2->created_at->diffForHumans() }}
+                                  </span>
+                                  </div>
+                              <p>{{ $reply2->content }}</p>
+                              <div class="comment__card-footer">
+                                  @auth
+                                  @if ($reply2->user->nama == auth()->user()->nama)
+                                  <div data-bs-toggle="collapse" data-bs-target="#editReplyReplyComment{{ $reply2->id }}" aria-expanded="false" aria-controls="editReplyReplyComment{{ $reply2->id }}">
+                                      Edit
+                                  </div>
+                                  <div class="delete-button" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $reply2->id }}').submit();">
+                                      Delete
+                                  </div>
+                                  <form id="delete-form-{{ $reply2->id }}" action="{{ route('comments.destroy', ['id' => $reply2->id]) }}" method="POST" class="d-none">
+                                      @csrf
+                                      @method('DELETE')
+                                  </form>
+                                  @endif
+                                  @endauth
+                              </div>
+                              <div class="collapse" id="editReplyReplyComment{{ $reply2->id }}">
+                                  <form action="{{ route('comments.update', ['comment' => $reply2->id]) }}" method="POST">
+                                  @csrf
+                                  @method('PUT')
+                                  <div class="mb-3">
+                                      <textarea 
+                                      class="form-control" 
+                                      id="content" 
+                                      name="content" 
+                                      class="form-control" 
+                                      oninput="document.getElementById('reply_reply_update{{ $comment->id }}').textContent = (255 - this.value.length) + ' karakter tersisa'"
+                                      >{{ $comment->content }}</textarea>
+                                      <div id="reply_reply_update{{ $comment->id }}"></div>
+                                  </div>
+                                  @error('content')
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
+                                  @auth
+                                  <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                  @endauth
+                                  <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                  <button type="submit" class="btn btn-primary">Update</button>
+                                  </form>
+                              </div>
+                          </div>
+                      @endforeach
+                  @endif
+                  </div>
+                  @endforeach
+                  @endif
+              </div>
+          </div>
+          @endif
+      </div>
+  @endforeach
+          
+
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
             </div>
           </div>
         </div>

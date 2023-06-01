@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item text-primary">Dashboard</li>
+            <li class="breadcrumb-item text-white">Dashboard</li>
             <li class="breadcrumb-item active">Categories</li>
           </ol>
         </div>
@@ -46,7 +46,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <button class="btn btn-success mb-3" data-toggle="modal" data-target="#createModal">Create Category</button>
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped table-dark table-hover" style="border: rgba(137, 43, 226, 0.643);">
                     
                     
                     <thead>

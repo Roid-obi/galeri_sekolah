@@ -203,7 +203,7 @@
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <a href="/posts/{{ $post->slug }}">
-                        <button   type="button" class="btn btn-sm btn-outline-secondary mt-3">View</button>
+                        <button   type="button" class="butn-view-post btn btn-sm btn-outline-secondary mt-3">View</button>
                       </a>
                     
 

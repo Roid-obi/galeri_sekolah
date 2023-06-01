@@ -1,14 +1,14 @@
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="opacity: 0.9">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link text-decoration-none">
+    <a href="/" class="logo-das brand-link text-decoration-none bg-dark">
       {{-- <img src="{{ asset('images/sewmo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
       <img src="{{ asset('images/SMKlogo.webp') }}" alt="Muh1h" width="50px" class="brand-image " style="opacity: .8">
       <span class="brand-text font-weight-light text-decoration-none">SMK Mutuharjo</span>
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar bg-dark" >
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
@@ -41,7 +41,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active bg-dark' : '' }}">
+            <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active bg-black' : '' }}">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
@@ -49,7 +49,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('profile') }}" class="nav-link {{ Route::is('profile') ? 'active bg-dark' : '' }}">
+            <a href="{{ route('profile') }}" class="nav-link {{ Route::is('profile') ? 'active bg-black' : '' }}">
               <i class="nav-icon fas fa-user-circle"></i>
               <p>
                 Profile
@@ -57,7 +57,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('users') }}" class="nav-link {{ Route::is('users') ? 'active bg-dark' : '' }}">
+            <a href="{{ route('users') }}" class="nav-link {{ Route::is('users') ? 'active bg-black' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Pengguna
@@ -66,7 +66,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('post.index') }}" class="nav-link {{ Route::is('post.index') ? 'active bg-dark' : '' }}">
+            <a href="{{ route('post.index') }}" class="nav-link {{ Route::is('post.index') ? 'active bg-black' : '' }}">
               <i class="nav-icon fas fa-th-large"></i>
               <p>
                 Postingan
@@ -74,7 +74,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('category.index') }}" class="nav-link {{ Route::is('category.index') ? 'active bg-dark' : '' }}">
+            <a href="{{ route('category.index') }}" class="nav-link {{ Route::is('category.index') ? 'active bg-black' : '' }}">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Categories
@@ -82,7 +82,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('tag.index') }}" class="nav-link {{ Route::is('tag.index') ? 'active bg-dark' : '' }}">
+            <a href="{{ route('tag.index') }}" class="nav-link {{ Route::is('tag.index') ? 'active bg-black' : '' }}">
               <i class="nav-icon fas fa-hashtag"></i>
               <p>
                 Tags

@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item text-primary">Dashboard</li>
+                  <li class="breadcrumb-item text-white">Dashboard</li>
                   <li class="breadcrumb-item active">Home</li>
               </ol>
             </div>

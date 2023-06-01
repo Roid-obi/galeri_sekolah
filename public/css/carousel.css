@@ -4,7 +4,7 @@
 
 body {
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  /* padding-bottom: 3rem; */
   color: #5a5a5a;
 }
 
@@ -16,9 +16,13 @@ body {
 .carousel {
   margin-bottom: 4rem;
 }
+.carousel img{
+  /* opacity: 0.; */
+  filter: brightness(70%);
+}
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-  bottom: 3rem;
+  bottom: -4rem;
   z-index: 10;
 }
 

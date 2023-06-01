@@ -31,9 +31,9 @@ Route::controller(welcome::class)->group(function () {
     Route::get('/posts','posts')->name('welcome.posts');
     Route::get('/posts/{slug}','show')->name('post.detail');
 
-    // Route::post('/', 'StoreComment')->name("comment"); 
-    // Route::delete('/comments/{id}', 'destroy')->name('comments.destroy'); //hapus comment
-    // Route::put('/comments/{comment}', 'update')->name('comments.update'); // edit comment
+    Route::post('/', 'StoreComment')->name("comment"); 
+    Route::delete('/comments/{id}', 'destroy')->name('comments.destroy'); //hapus comment
+    Route::put('/comments/{comment}', 'update')->name('comments.update'); // edit comment
 
     Route::get('/post/category/{category}','showCategory')->name('post.category'); //menampilkan kategory yang di klik 
     Route::get('/post/tag/{tag}','showTag')->name('post.tag');  //menampilkan tag yang di klik 

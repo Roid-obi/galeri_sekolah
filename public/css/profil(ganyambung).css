@@ -135,10 +135,15 @@ text-shadow: 2px 2px 3px rgba(127, 127, 127, 0.3);
 /* .nav-link.active p{
     color: bisque;
 } */
-.nav-link.active svg {
+.nav-link.active  {
     fill: bisque;
 }
 
+.nav-link.active {
+    border:solid #00BFA5  !important; /* Ganti dengan kode warna hijau toska yang diinginkan */
+    color: #fff !important; /* Ganti dengan warna teks yang sesuai */
+  }
+  
 
 .butn-edit-prof {
 

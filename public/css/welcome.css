@@ -1,3 +1,9 @@
+header nav{
+  background-image: linear-gradient(45deg, rgb(39, 39, 51), rgb(87, 0, 149));
+  height: 60px;
+  opacity: 0.9;
+}
+
 header nav ul li a{
     color: rgb(157, 157, 157);
     padding: 5px;
@@ -9,8 +15,20 @@ header nav ul li a{
 }
 
 header nav ul li a:hover{
+    /* color: rgb(84, 84, 255); */
     color: white;
     
+}
+
+header nav ul li .active{
+  text-decoration: bold;
+  /* color: rgb(84, 84, 255); */
+  color: white;
+  
+}
+
+.carousel-inner{
+  height: 560px;
 }
 
 .bangam1{
@@ -39,18 +57,18 @@ header nav ul li a:hover{
 .card:hover{
   box-shadow: rgba(0, 0, 0, 0.535) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-.card img {
+.card .imagecard img {
     width: 100%;
   border-radius: 5px;
   
 }
-.card img {
+.card .imagecard img {
   transition: transform 0.5s ease;
   
     
 }
 
-.card img:hover{
+.card .imagecard img:hover{
     transform: scale(1.05);
   border-radius: 0px;
 }
@@ -71,76 +89,6 @@ text-align: right;
 }
 
 
-
-/* comment */
-.imagecoms{
-  float: left;
-  border-radius: 20px;
-  margin-right: 20px;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border: 2px #41403e solid;
-  border-radius: 50px;
-
-  /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
-}
-
-.inputcom{
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border: 2px #41403e solid;
-}
-
-
-
-/* CSS */
-.button-55 {
-  margin-top: 10px;
-  align-self: center;
-  background-color: #fff;
-  background-image: none;
-  background-position: 0 90%;
-  background-repeat: repeat no-repeat;
-  background-size: 4px 3px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-  border: 2px #41403e solid;
-  box-sizing: border-box;
-  color: #41403e;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Neucha, sans-serif;
-  font-size: 1rem;
-  line-height: 23px;
-  outline: none;
-  padding: .35rem;
-  text-decoration: none;
-  transition: all 235ms ease-in-out;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.button-55:hover {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
-  transform: translate3d(0, 2px, 0);
-}
-
-.button-55:focus {
-  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
-}
 
 
 /* share media */
@@ -166,4 +114,74 @@ div#social-links ul li a{
   font-size: 30px;
   color: #222;
   background-color: #ccc;
+}
+
+
+.butn-view-post {
+  color: rgb(39, 39, 51);
+  border: solid rgb(87, 0, 149) 1px ;
+}
+
+.butn-view-post:hover{
+  background-image: linear-gradient(45deg, rgb(84, 84, 255), purple);
+
+}
+
+
+.butn-crl {
+  text-decoration: none;
+  color :rgb(255, 251, 251);
+  opacity: 0.8;
+  
+}
+
+.butn-crl:hover{
+  color: rgb(87, 0, 149) ;
+}
+
+
+
+
+/* KOMEN */
+
+.comment__container {
+  display: none;
+  position: relative;
+  margin: 20px
+}
+
+.comment__container.opened {
+  display: block;
+}
+
+.comment__container:not(:first-child) {
+  margin-left: 3rem;
+  margin-top: 1rem;
+}
+
+.comment__card {
+  padding: 20px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  min-width: 100%;
+}
+
+.comment__card h3,
+.comment__card p {
+  margin-bottom: 2rem;
+}
+
+.comment__card-footer {
+  display: flex;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
+  gap: 20px;
+}
+
+.show-replies {
+  cursor: pointer;
 }

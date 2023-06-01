@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item text-primary">Dashboard</li>
+            <li class="breadcrumb-item text-white">Dashboard</li>
             <li class="breadcrumb-item active">Postingan</li>
           </ol>
         </div>
@@ -46,7 +46,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <button class="btn btn-success mb-3" data-toggle="modal" data-target="#createModal">Create post</button>
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-dark table-striped table-hover" style="border: rgba(137, 43, 226, 0.643);">
                     
                     
                     <thead>
@@ -67,13 +67,16 @@
                         @foreach ($posts as $post)
                         <tr>
                             <td>{{ $post->id }}</td>
-                            <td><img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="80" src="" id="output"> </td>
+                            <td><div class="gsl "><img src="{{ asset('/storage/images/'.$post->image) }}" class="outimgd d-block mb-2" width="90" height="50" src="" id="output" style="object-fit: cover;"></div> </td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->content }}</td>
                             <td>{{ $post->created_by }}</td>
                             <td>{{ $post->views }}</td>
                             <td>
-                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#editModal{{ $post->id }}">Edit</button>
+                                
+                                    <button class="btn btn-primary btn-sm "><a class="text-decoration-none text-white" href="/posts/{{ $post->slug }}">Show</a></button>
+                                
+                                <button class="btn btn-info btn-sm text-white" data-toggle="modal" data-target="#editModal{{ $post->id }}">Edit</button>
                                 <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ $post->id }}">Delete</button>
                             </td>
                         </tr>

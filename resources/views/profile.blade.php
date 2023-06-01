@@ -11,7 +11,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item text-primary">Dashboard</li>
+                    <li class="breadcrumb-item text-white">Dashboard</li>
                     <li class="breadcrumb-item active">Profile</li>
                 </ol>
             </div>
@@ -31,7 +31,7 @@
             <div class="col-md-3">
 
                 <!-- Profile Image -->
-                <div class="card card-primary card-outline">
+                <div class="card card-primary card-outline bg-dark">
                     <div class="card-body box-profile">
                         <div class="text-center">
                             @if(Auth::user()->image)
@@ -48,14 +48,14 @@
                         <p class="text-muted text-center">{{ Auth::user()->role }}</p>
 
                         <ul class="list-group list-group-flush mb-2">
-                            <li class="list-group-item">
-                                <b>ID</b> <a class="float-right text-decoration-none">{{ Auth::user()->id }}</a>
+                            <li class="list-group-item bg-dark">
+                                <b class="text-white">ID</b> <a class="float-right text-decoration-none">{{ Auth::user()->id }}</a>
                             </li>
-                            <li class="list-group-item">
-                                <b>Email</b> <a class="float-right text-decoration-none">{{ Auth::user()->email }}</a>
+                            <li class="list-group-item bg-dark">
+                                <b class="text-white">Email</b> <a class="float-right text-decoration-none">{{ Auth::user()->email }}</a>
                             </li>
-                            <li class="list-group-item">
-                                <b>Kelas</b> <a class="float-right text-decoration-none">{{ Auth::user()->kelas }}</a>
+                            <li class="list-group-item bg-dark">
+                                <b class="text-white">Kelas</b> <a class="float-right text-decoration-none">{{ Auth::user()->kelas }}</a>
                             </li>
                         </ul>
 

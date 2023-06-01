@@ -1,5 +1,5 @@
  <!-- Navbar -->
- <nav class="main-header navbar navbar-expand navbar-dark">
+ <nav class="main-header navbar navbar-expand navbar-dark gb-black" style="opacity: 1;">
     {{-- <div class="container"> --}}
     <!-- Left navbar links -->
     <ul class="navbar-nav">
